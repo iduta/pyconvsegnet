@@ -35,7 +35,7 @@ TRAIN:
   weight:  # path to initial weight (default: none)
   resume:  # path to latest checkpoint (default: none)
   evaluate: True  # evaluate on validation set, extra gpu memory needed and small batch_size_val is recommend
-  pretrained: False # use pretrained backbone
+  pretrained: True # use pretrained backbone
   use_ppm: False
   backbone_output_stride: 8
 Distributed:
