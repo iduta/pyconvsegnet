@@ -6,7 +6,7 @@ DATA:
 
 TRAIN:
   arch: pyconvsegnet
-  backbone_net: pyconvresnet
+  backbone_net: resnet
   layers: 50
   sync_bn: True  # adopt sync_bn or not
   train_h: 473
