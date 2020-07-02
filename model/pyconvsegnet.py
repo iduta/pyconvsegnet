@@ -200,13 +200,10 @@ class PyConvSegNet(nn.Module):
         if self.training:
             main_loss = self.criterion(x, y)
 
-            if not self.merge_with_stages:
-                aux = self.aux(out_stage3)
-                if self.zoom_factor != 1:
-                    aux = F.interpolate(aux, size=(h, w), mode='bilinear', align_corners=True)
-                    aux_loss = self.criterion(aux, y)
-            else:
-                aux_loss = main_loss * 0
+            aux = self.aux(out_stage3)
+            if self.zoom_factor != 1:
+                aux = F.interpolate(aux, size=(h, w), mode='bilinear', align_corners=True)
+                aux_loss = self.criterion(aux, y)
 
             return x.max(1)[1], main_loss, aux_loss
 
