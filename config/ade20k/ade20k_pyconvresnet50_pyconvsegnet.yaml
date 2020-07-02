@@ -18,7 +18,7 @@ TRAIN:
   zoom_factor: 8  # zoom factor for final prediction during training, be in [1, 2, 4, 8]
   ignore_label: 255
   aux_weight: 0.4
-  train_gpu: [0, 1, 2, 3, 4, 5, 6, 7]
+  train_gpu: [0, 1, 2, 3, 4, 6, 7, 8]
   workers: 16  # data loader workers
   batch_size: 16  # batch size for training
   batch_size_val: 16  # batch size for validation during training, memory and speed tradeoff
