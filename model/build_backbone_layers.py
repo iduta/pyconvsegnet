@@ -53,6 +53,10 @@ def build_backbone_layers(backbone_net, layers, pretrained, backbone_output_stri
         elif layers == 152:
             backbone = pyconvresnet.pyconvresnet152(pretrained=pretrained)
 
+        if pretrained:
+            backbone.m.load_state_dict(torch.load(pretrained), strict=True)
+
+
 
         if convert_bn and not isinstance(convert_bn, torch.nn.BatchNorm2d):#!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
             print("Converting Batch Norm to: ", convert_bn)
