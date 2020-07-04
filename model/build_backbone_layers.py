@@ -54,7 +54,7 @@ def build_backbone_layers(backbone_net, layers, pretrained, backbone_output_stri
             backbone = pyconvresnet.pyconvresnet152()
 
         if pretrained:
-            backbone.m.load_state_dict(torch.load(pretrained), strict=True)
+            backbone.load_state_dict(torch.load(pretrained), strict=True)
 
 
 
