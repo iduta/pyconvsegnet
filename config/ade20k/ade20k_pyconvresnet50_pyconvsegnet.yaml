@@ -35,7 +35,7 @@ TRAIN:
   weight:  # path to initial weight (default: none)
   resume:  # path to latest checkpoint (default: none)
   evaluate: True  # evaluate on validation set, extra gpu memory needed and small batch_size_val is recommend
-  pretrained: #/raid/tmp/pyconvresnet50.pth # use path to pretrained backbone
+  pretrained: /raid/tmp/pyconvresnet50.pth # use path to pretrained backbone
   use_ppm: False
   backbone_output_stride: 8
 Distributed:
