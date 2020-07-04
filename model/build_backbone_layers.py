@@ -47,11 +47,11 @@ def build_backbone_layers(backbone_net, layers, pretrained, backbone_output_stri
 
     if backbone_net == 'pyconvresnet':
         if layers == 50:
-            backbone = pyconvresnet.pyconvresnet50(pretrained=pretrained)
+            backbone = pyconvresnet.pyconvresnet50()
         elif layers == 101:
-            backbone = pyconvresnet.pyconvresnet101(pretrained=pretrained)
+            backbone = pyconvresnet.pyconvresnet101()
         elif layers == 152:
-            backbone = pyconvresnet.pyconvresnet152(pretrained=pretrained)
+            backbone = pyconvresnet.pyconvresnet152()
 
         if pretrained:
             backbone.m.load_state_dict(torch.load(pretrained), strict=True)
