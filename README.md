@@ -51,7 +51,7 @@ Run the inference on the validation set (also update the `config/ade20k/pyconvre
 ./tool/test.sh ade20k pyconvresnet50_pyconvsegnet
 ```
 
-###Citation
+### Citation
 If you find our work useful, please consider citing:
 ```
 @article{duta2020pyramidal,
