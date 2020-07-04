@@ -6,7 +6,7 @@ DATA:
 
 TRAIN:
   arch: pyconvsegnet
-  backbone_net: pyconvresnet
+  backbone_net: resnet
   layers: 50
   sync_bn: True  # adopt sync_bn or not
   train_h: 473
@@ -31,11 +31,11 @@ TRAIN:
   manual_seed: 1
   print_freq: 10
   save_freq: 1
-  save_path: exp/ade20k/ade20k_pyconvresnet50_pyconvsegnet/model
+  save_path: exp/ade20k/ade20k_resnet50_pyconvsegnet/model
   weight:  # path to initial weight (default: none)
   resume:  # path to latest checkpoint (default: none)
   evaluate: True  # evaluate on validation set, extra gpu memory needed and small batch_size_val is recommend
-  pretrained: /raid/tmp/pyconvresnet50.pth # use path to pretrained backbone
+  pretrained: /raid/tmp/resnet50.pth # use path to pretrained backbone
   use_ppm: False
   backbone_output_stride: 8
 Distributed:
@@ -60,9 +60,9 @@ TEST:
   index_start: 0  # evaluation start index in list
   index_step: 0  # evaluation step index in list, 0 means to end
   test_gpu: [0]
-  model_path: exp/ade20k/ade20k_pyconvresnet50_pyconvsegnet/model/train_epoch_100.pth  # evaluation model path
-  save_folder: exp/ade20k/ade20k_pyconvresnet50_pyconvsegnet/result/epoch_100/val/ss  # results save folder
+  model_path: exp/ade20k/ade20k_resnet50_pyconvsegnet/model/train_epoch_100.pth  # evaluation model path
+  save_folder: exp/ade20k/ade20k_resnet50_pyconvsegnet/result/epoch_100/val/ss  # results save folder
   colors_path: dataset/ade20k/ade20k_colors.txt  # path of dataset colors
   names_path: dataset/ade20k/ade20k_names.txt  # path of dataset category names
-  best_mIoU_model_path: exp/ade20k/ade20k_pyconvresnet50_pyconvsegnet/model/best_mIoU.pth  # evaluation model path
-  best_mIoU_save_folder: exp/ade20k/ade20k_pyconvresnet50_pyconvsegnet/result/best_mIoU/val/ss  # results save folder
+  best_mIoU_model_path: exp/ade20k/ade20k_resnet50_pyconvsegnet/model/best_mIoU.pth  # evaluation model path
+  best_mIoU_save_folder: exp/ade20k/ade20k_resnet50_pyconvsegnet/result/best_mIoU/val/ss  # results save folder

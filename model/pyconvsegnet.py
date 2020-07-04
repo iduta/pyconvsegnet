@@ -217,43 +217,8 @@ if __name__ == '__main__':
     size_input = 473 #817 #577 #473 #713
     input = torch.rand(1, 3, size_input, size_input)#.cuda()
     model = PyConvSegNet(layers=50, dropout=0.1, classes=150, zoom_factor=8,
-                      pretrained=True, backbone_output_stride=8, backbone_net='resnet')#.cuda()
+                      pretrained=False, backbone_output_stride=8, backbone_net='resnet')#.cuda()
     model.eval()
     print(model)
     output = model(input)
     print('PyConvSegNet', output.size())
-
-    print("Total number of parameters: ", sum(p.numel() for p in model.parameters()))
-
-    from util.div.pytorch_OpCounter.thop import profile
-
-    flops, params = profile(model, input_size=(1, 3, size_input, size_input))
-    print('flops: {}   parmas: {}'.format(flops, params))
-    print('flops: {:.2f}   parmas: {:.2f}'.format(flops / 10 ** 9, params / 10 ** 6))
-
-    print("Total number of parameters: ", sum(p.numel() for p in model.parameters()))
-
-    '''
-    print("~~~~~~~~~~~~~~~~~~~~~~~~``")
-    print('model.global_context:', model.global_context)
-    print('model.global_context.parameters()', model.global_context.parameters())
-    for p in model.global_context.parameters():
-       if p.requires_grad:
-           print(p.name, p.data)
-    '''
-    '''
-    import time
-    runs = 100
-    time_sum = 0
-    for i in range(runs):
-        #print(i)
-        start = time.time()
-        output = model(input)
-        time_sum += time.time() - start
-    print("Elapsed time for {} runs: {}".format(runs, time_sum/runs))
-    '''
-    '''
-    up_conv = nn.ConvTranspose2d(256, 256, 2, stride=2).cuda()
-    o = up_conv(torch.rand(1, 256, 237, 237).cuda())
-    print(o.size())
-    '''

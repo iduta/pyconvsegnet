@@ -97,7 +97,7 @@ class PSPNet(nn.Module):
 if __name__ == '__main__':
     import os
     os.environ["CUDA_VISIBLE_DEVICES"] = '0, 1'
-    input_rez = 473  # 577 #473 #713 #713 #817 #577 #473 #713
+    input_rez = 473
 
     input = torch.rand(1, 3, input_rez, input_rez)#.cuda()
     model = PSPNet(layers=50, bins=(1, 2, 3, 6), dropout=0.1, classes=150, zoom_factor=8, use_ppm=True,
@@ -106,30 +106,3 @@ if __name__ == '__main__':
     print(model)
     output = model(input)
     print('PSPNet', output.size())
-
-    print("Total number of parameters: ", sum(p.numel() for p in model.parameters()))
-
-    from util.div.pytorch_OpCounter.thop import profile
-
-    flops, params = profile(model, input_size=(1, 3, input_rez, input_rez))
-    print('flops: {}   parmas: {}'.format(flops, params))
-    print('flops: {:.2f}   parmas: {:.2f}'.format(flops / 10 ** 9, params / 10 ** 6))
-
-    print("Total number of parameters: ", sum(p.numel() for p in model.parameters()))
-
-    '''
-    import time
-    runs = 100
-    time_sum = 0
-    for i in range(runs):
-        #print(i)
-        start = time.time()
-        output = model(input)
-        time_sum += time.time() - start
-    print("Elapsed time for {} runs: {}".format(runs, time_sum/runs))
-    '''
-    '''
-    up_conv = nn.ConvTranspose2d(256, 256, 2, stride=2).cuda()
-    o = up_conv(torch.rand(1, 256, 237, 237).cuda())
-    print(o.size())
-    '''

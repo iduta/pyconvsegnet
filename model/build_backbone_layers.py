@@ -10,11 +10,15 @@ def build_backbone_layers(backbone_net, layers, pretrained, backbone_output_stri
 
     if backbone_net == "pyconvhgresnet":
         if layers == 50:
-            backbone = pyconvhgresnet.pyconvhgresnet50(pretrained=pretrained)
+            backbone = pyconvhgresnet.pyconvhgresnet50()
         elif layers == 101:
-            backbone = pyconvhgresnet.pyconvhgresnet101(pretrained=pretrained)
+            backbone = pyconvhgresnet.pyconvhgresnet101()
         elif layers == 152:
-            backbone = pyconvhgresnet.pyconvhgresnet152(pretrained=pretrained)
+            backbone = pyconvhgresnet.pyconvhgresnet152()
+
+        if pretrained:
+            print("Load pretrained model:  ", pretrained)
+            backbone.load_state_dict(torch.load(pretrained), strict=True)
 
         if convert_bn and not isinstance(convert_bn, torch.nn.BatchNorm2d):#!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
             print("Converting Batch Norm to: ", convert_bn)
@@ -54,15 +58,13 @@ def build_backbone_layers(backbone_net, layers, pretrained, backbone_output_stri
             backbone = pyconvresnet.pyconvresnet152()
 
         if pretrained:
+            print("Load pretrained model:  ", pretrained)
             backbone.load_state_dict(torch.load(pretrained), strict=True)
-
-
 
         if convert_bn and not isinstance(convert_bn, torch.nn.BatchNorm2d):#!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
             print("Converting Batch Norm to: ", convert_bn)
             backbone = convert_BN(backbone, convert_bn)
 
-        #layer0 = nn.Sequential(backbone.conv1, backbone.bn1, backbone.relu, backbone.maxpool)
         layer0 = nn.Sequential(backbone.conv1, backbone.bn1, backbone.relu)
         layer1, layer2, layer3, layer4 = backbone.layer1, backbone.layer2, backbone.layer3, backbone.layer4
 
@@ -90,11 +92,15 @@ def build_backbone_layers(backbone_net, layers, pretrained, backbone_output_stri
 
     if backbone_net == 'resnet':
         if layers == 50:
-            backbone = resnet.resnet50(pretrained=pretrained)
+            backbone = resnet.resnet50()
         elif layers == 101:
-            backbone = resnet.resnet101(pretrained=pretrained)
+            backbone = resnet.resnet101()
         elif layers == 152:
-            backbone = resnet.resnet152(pretrained=pretrained)
+            backbone = resnet.resnet152()
+
+        if pretrained:
+            print("Load pretrained model:  ", pretrained)
+            backbone.load_state_dict(torch.load(pretrained), strict=True)
 
         if convert_bn and not isinstance(convert_bn, torch.nn.BatchNorm2d):#!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
             print("Converting Batch Norm to: ", convert_bn)
