@@ -30,14 +30,14 @@ Our single model top result (mIoU=39.13,  pAcc=73.91, score=56.52) on the testin
 
 ### Requirements
 
-Install PyTorch following the [official PyTorch ImageNet training code](https://github.com/pytorch/examples/tree/master/imagenet).
+Install [PyTorch](https://pytorch.org/) `pip install -r requirements.txt`
 
 A fast alternative (without the need to install PyTorch and other deep learning libraries) is to use [NVIDIA-Docker](https://docs.nvidia.com/deeplearning/frameworks/pytorch-release-notes/pullcontainer.html#pullcontainer), 
 we used [this container image](https://docs.nvidia.com/deeplearning/frameworks/pytorch-release-notes/rel_19-08.html#rel_19-08).
 
-Download the [ImageNet pretrained models](https://github.com/iduta/pyconv) and add the corresponding path the the `config` file.
+Download the [ImageNet pretrained models](https://github.com/iduta/pyconv) and add the corresponding path to the config `.yaml` file.
 
-Download the [ADE20K dataset](https://groups.csail.mit.edu/vision/datasets/ADE20K/). (note that this code uses label id starting from 0, while the original ids start from 1, so, you need to preprocess the original labels by subtracting 1)
+Download the [ADE20K dataset](https://groups.csail.mit.edu/vision/datasets/ADE20K/). (note that this code uses label id starting from 0, while the original ids start from 1, thus, you need to preprocess the original labels by subtracting 1)
 
 
 ### Training and Inference
